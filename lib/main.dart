@@ -1,6 +1,9 @@
+import 'package:comic_vista/pages/page_category.dart';
 import 'package:comic_vista/pages/page_home.dart';
 import 'package:comic_vista/pages/page_library.dart';
 import 'package:flutter/material.dart';
+
+import 'components/customAppBar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +18,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-       
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
@@ -36,7 +38,8 @@ class _AppNavigationState extends State<AppNavigation> {
 
   final List<Widget> _pages = [
     const PageHome(),
-    const PageLibraly()
+    const PageLibraly(),
+    const PageCategory(),
   ];
 
   void _onTapped(int index) {
@@ -48,6 +51,7 @@ class _AppNavigationState extends State<AppNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: CustomAppBar(),
         backgroundColor: const Color.fromARGB(254, 254, 254, 254),
         body: IndexedStack(
           index: _currentPageIndex,
@@ -58,13 +62,20 @@ class _AppNavigationState extends State<AppNavigation> {
           onTap: _onTapped,
           items: const<BottomNavigationBarItem>[
             BottomNavigationBarItem(
-                icon: Icon(Icons.home),
+                icon: Icon(Icons.home_outlined),
+                activeIcon: Icon(Icons.home),
                 label: 'Home'
             ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.home_outlined),
+                icon: Icon(Icons.book_outlined),
+                activeIcon: Icon(Icons.book),
                 label: 'Biblioteca'
-            )
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.grid_view),
+                activeIcon: Icon(Icons.grid_view_sharp),
+                label: 'Categoria'
+            ),
           ],
         )
     );
